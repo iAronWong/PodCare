@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
 
 @interface MasterViewController : UITableViewController
-
+@property (nonatomic,strong) ASIHTTPRequest *request;
 @end
