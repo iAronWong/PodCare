@@ -9,13 +9,16 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
+//#import "ASIHTTPRequest.h"
+#import "JSON.h"
 
 @interface MasterViewController () {
-    NSMutableArray *_objects;
+    //NSMutableArray *_objects;
 }
 @end
 
 @implementation MasterViewController
+@synthesize request = _request;
 
 - (void)awakeFromNib
 {
@@ -26,19 +29,125 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self loadData];
+    
+    
+
+    
+}
+#pragma mark - loadData
+
+- (void)loadData
+{
+    
+    NSString *urlString = @"https://itunes.apple.com/cn/rss/toppodcasts/limit=50/genre=1318/json";
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self setRequest:[ASIHTTPRequest requestWithURL:url]];
+    self.request.delegate = self;
+    [self.request startAsynchronous];
+    NSLog(@"sss");
+    
+
 }
 
+- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+{
+    NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    //NSLog(@"1:%@",str);
+    
+    NSDictionary *mydict = [result JSONValue];
+    NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
+    NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
+    NSArray *resultArr = (NSArray *)mydict2;
+    NSMutableDictionary *tmpDict;
+    for (NSInteger i = 0;i<resultArr.count;i++) {
+        if (i != 0) {          
+            NSDictionary *item = resultArr[i];
+            NSDictionary *mydict3 = [item objectForKey:@"author"];
+            NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
+            NSString *author = [mydict4 objectForKey:@"label"];
+            //NSArray *result = (NSArray *)mydict4;
+            NSDictionary *mydict5 = [item objectForKey:@"im:rating"];
+            NSString *star = [mydict5 objectForKey:@"label"];
+            NSDictionary *mydict6 = [item objectForKey:@"title"];
+            NSString *title = [mydict6 objectForKey:@"label"];
+            NSDictionary *mydict7 = [item objectForKey:@"content"];
+            NSString *content= [mydict7 objectForKey:@"label"];
+            NSLog(@"%@",content);
+            tmpDict = [[NSMutableDictionary alloc] init];
+            [tmpDict setValue:author forKey:@"author"];
+            [tmpDict setValue:star forKey:@"star"];
+            [tmpDict setValue:title forKey:@"title"];
+            [tmpDict setValue:content forKey:@"content"];
+            [self.list addObject:tmpDict];
+            
+        }
+    }
+
+    
+}
+
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    //NSString *str = [request responseString];
+    //NSLog(@"%@",str);
+    /*if (request)
+    {
+        if ([request error])
+        {
+            NSString *result = [[request error] localizedDescription];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+        else if ([request responseString])
+        {
+            NSString *result = [request responseString];
+            if([result isEqualToString:@"40023"] || [result isEqualToString:@"40024"])
+            {
+                
+            }
+            else
+            {
+                NSLog(@"%@",[request responseString]);
+                
+            }
+            
+        }
+        
+    }
+    NSString *str = [[NSString alloc]initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+     */
+    //NSString *str = [[NSString alloc]initWithData:request.responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"1:%@",str);
+    //NSLog(@"finish :%@ ,%d" ,str,request.responseEncoding);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSString *result = [[request error] localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    
+    
+}
+
+- (void)requestStarted:(ASIHTTPRequest *)request
+{
+    NSLog(@"Start");
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+/*- (void)insertNewObject:(id)sender
 {
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
@@ -47,6 +156,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+*/
 
 #pragma mark - Table View
 
@@ -57,15 +167,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return 2;//_objects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSDate *object = _objects[indexPath.row];
+    cell.textLabel.text = @"test";//[object description];
     return cell;
 }
 
@@ -75,7 +185,7 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_objects removeObjectAtIndex:indexPath.row];
@@ -84,6 +194,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
+*/
 
 /*
 // Override to support rearranging the table view.
@@ -105,7 +216,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSDate *object = @"2011-1-1";//_objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
