@@ -34,7 +34,7 @@
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    
+    self.list = [[NSMutableArray alloc]init];
     [self loadData];
     
     
@@ -46,7 +46,8 @@
 - (void)loadData
 {
     
-    NSString *urlString = @"http://itunes.apple.com/en/rss/customerreviews/id=616667842/page=1/json";
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=616667842/page=1/json",self.countryString];
+    NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [self setRequest:[ASIHTTPRequest requestWithURL:url]];
     //self.request.delegate = self;
@@ -196,7 +197,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;//_objects.count;
+    return self.list.count;//_objects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
