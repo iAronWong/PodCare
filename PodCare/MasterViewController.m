@@ -19,6 +19,7 @@
 
 @implementation MasterViewController
 @synthesize request = _request;
+@synthesize list = _list;
 
 - (void)awakeFromNib
 {
@@ -45,12 +46,68 @@
 - (void)loadData
 {
     
-    NSString *urlString = @"https://itunes.apple.com/cn/rss/toppodcasts/limit=50/genre=1318/json";
+    NSString *urlString = @"http://itunes.apple.com/en/rss/customerreviews/id=616667842/page=1/json";
     NSURL *url = [NSURL URLWithString:urlString];
     [self setRequest:[ASIHTTPRequest requestWithURL:url]];
-    self.request.delegate = self;
-    [self.request startAsynchronous];
+    //self.request.delegate = self;
+    [self.request startSynchronous];
+    [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:YES];
     NSLog(@"sss");
+    if (self.request) {
+        if ([self.request error]) {
+            NSString *result = [[self.request error] localizedDescription];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        } else if ([self.request responseString]) {
+            NSString *result = [self.request responseString];
+            if([result isEqualToString:@"40023"] || [result isEqualToString:@"40024"])
+            {
+                
+            }else{
+                NSDictionary *mydict = [result JSONValue];
+                NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
+                NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
+                NSArray *resultArr = (NSArray *)mydict2;
+                NSMutableDictionary *tmpDict;
+                for (NSInteger i = 0;i<resultArr.count;i++) {
+                    if (i != 0) {
+                        
+                        
+                        NSDictionary *item = resultArr[i];
+                        NSDictionary *mydict3 = [item objectForKey:@"author"];
+                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
+                        NSString *author = [mydict4 objectForKey:@"label"];
+                        //NSArray *result = (NSArray *)mydict4;
+                        NSDictionary *mydict5 = [item objectForKey:@"im:rating"];
+                        NSString *star = [mydict5 objectForKey:@"label"];
+                        NSDictionary *mydict6 = [item objectForKey:@"title"];
+                        NSString *title = [mydict6 objectForKey:@"label"];
+                        NSDictionary *mydict7 = [item objectForKey:@"content"];
+                        NSString *content= [mydict7 objectForKey:@"label"];
+                        NSLog(@"%@",content);
+                        tmpDict = [[NSMutableDictionary alloc] init];
+                        [tmpDict setValue:author forKey:@"author"];
+                        [tmpDict setValue:star forKey:@"star"];
+                        [tmpDict setValue:title forKey:@"title"];
+                        [tmpDict setValue:content forKey:@"content"];
+                        [self.list addObject:tmpDict];
+                        
+                    }}
+                /*NSArray *resultArr = (NSArray *)mydict1;
+                 //NSArray *resultArr = (NSArray *)mydict;
+                 for (NSDictionary *item in resultArr) {
+                 tmpDict = [[NSMutableDictionary alloc] init];
+                 [tmpDict setValue:[item objectForKey:@"city_en"] forKey:@"city_en"];
+                 //[tmpDict setValue:[item objectForKey:@"x_pic"] forKey:@"x_pic"];
+                 [self.list addObject:tmpDict];
+                 
+                 }*/
+            }
+        }
+    }else{
+        
+    }
+
     
 
 }
@@ -58,37 +115,9 @@
 - (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
 {
     NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    //NSLog(@"1:%@",str);
+    NSLog(@"1:%@",result);
+    char chr = data;
     
-    NSDictionary *mydict = [result JSONValue];
-    NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
-    NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
-    NSArray *resultArr = (NSArray *)mydict2;
-    NSMutableDictionary *tmpDict;
-    for (NSInteger i = 0;i<resultArr.count;i++) {
-        if (i != 0) {          
-            NSDictionary *item = resultArr[i];
-            NSDictionary *mydict3 = [item objectForKey:@"author"];
-            NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
-            NSString *author = [mydict4 objectForKey:@"label"];
-            //NSArray *result = (NSArray *)mydict4;
-            NSDictionary *mydict5 = [item objectForKey:@"im:rating"];
-            NSString *star = [mydict5 objectForKey:@"label"];
-            NSDictionary *mydict6 = [item objectForKey:@"title"];
-            NSString *title = [mydict6 objectForKey:@"label"];
-            NSDictionary *mydict7 = [item objectForKey:@"content"];
-            NSString *content= [mydict7 objectForKey:@"label"];
-            NSLog(@"%@",content);
-            tmpDict = [[NSMutableDictionary alloc] init];
-            [tmpDict setValue:author forKey:@"author"];
-            [tmpDict setValue:star forKey:@"star"];
-            [tmpDict setValue:title forKey:@"title"];
-            [tmpDict setValue:content forKey:@"content"];
-            [self.list addObject:tmpDict];
-            
-        }
-    }
-
     
 }
 
@@ -167,22 +196,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;//_objects.count;
+    return 3;//_objects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     //NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = @"test";//[object description];
+    //cell.textLabel.text = @"test";//[object description];
+    //cell.contentView.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
+    //cell.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
+    //cell.c
+     NSString *content = [NSString stringWithFormat:@"%d.Author:%@  Star:%@  CommentTitle:%@  Content:%@",indexPath.row+1,[[self.list objectAtIndex:indexPath.row] objectForKey:@"author"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"title"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
+    cell.commentCell.text = content;
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 /*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,4 +255,8 @@
     }
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
 @end
