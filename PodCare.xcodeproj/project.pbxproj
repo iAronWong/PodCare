@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD15019C1769F25400EA546E /* SearchPodcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15019B1769F25400EA546E /* SearchPodcastViewController.m */; };
 		CD91171F1764D7360058F13A /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9117071764D7360058F13A /* NSObject+SBJson.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9117201764D7360058F13A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91170A1764D7360058F13A /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9117211764D7360058F13A /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91170C1764D7360058F13A /* SBJsonStreamParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -50,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD15019A1769F25400EA546E /* SearchPodcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPodcastViewController.h; sourceTree = "<group>"; };
+		CD15019B1769F25400EA546E /* SearchPodcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPodcastViewController.m; sourceTree = "<group>"; };
 		CD9117051764D7360058F13A /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		CD9117061764D7360058F13A /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		CD9117071764D7360058F13A /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				CDC7F2971761EAA4000FDD73 /* AppDelegate.h */,
 				CDC7F2981761EAA4000FDD73 /* AppDelegate.m */,
 				CDC7F2A01761EAA4000FDD73 /* MainStoryboard.storyboard */,
+				CD15019A1769F25400EA546E /* SearchPodcastViewController.h */,
+				CD15019B1769F25400EA546E /* SearchPodcastViewController.m */,
 				CD9D2A9A1765A970000014AC /* FirstViewController.h */,
 				CD9D2A9B1765A970000014AC /* FirstViewController.m */,
 				CDC7F2A31761EAA4000FDD73 /* MasterViewController.h */,
@@ -376,6 +381,7 @@
 				CD91172A1764D7360058F13A /* SBJsonWriter.m in Sources */,
 				CD9B42D11765842C005849C8 /* CustomCell.m in Sources */,
 				CD9D2A9C1765A970000014AC /* FirstViewController.m in Sources */,
+				CD15019C1769F25400EA546E /* SearchPodcastViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,6 +47,7 @@
 {
     
     NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=616667842/page=1/json",self.countryString];
+    //http://itunes.apple.com/CN/rss/customerreviews/id=463407457/page=2/xml
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [self setRequest:[ASIHTTPRequest requestWithURL:url]];
@@ -203,7 +204,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
+    if (cell == nil) {
+        cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     //NSDate *object = _objects[indexPath.row];
     //cell.textLabel.text = @"test";//[object description];
     //cell.contentView.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
