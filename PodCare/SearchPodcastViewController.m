@@ -9,6 +9,9 @@
 #import "SearchPodcastViewController.h"
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
+#import "EGOImageView.h"
+//#import "EGOCache.h"
+//#import "EGOImageLoader.h"
 @interface SearchPodcastViewController ()
 {
     
@@ -17,7 +20,7 @@
 
 @implementation SearchPodcastViewController
 @synthesize asiRequest = _asiRequest;
-
+@synthesize list = _list;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,7 +34,7 @@
 {
     [super viewDidLoad];
 	self.asiRequest.delegate = self;
-    
+    self.list = [[NSMutableArray alloc]init];
     
 }
 
@@ -72,6 +75,7 @@
                 //NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
                 NSArray *resultArr = (NSArray *)mydict1;
                 NSMutableDictionary *tmpDict;
+                self.list = [[NSMutableArray alloc]init];
                 for (NSInteger i = 0;i<resultArr.count;i++) {
 
                         NSDictionary *item = resultArr[i];
@@ -81,13 +85,16 @@
                         NSString *podcastURL = [item objectForKey:@"collectionViewUrl"];
                         NSString *feedURL = [item objectForKey:@"feedUrl"];
                         NSString *artworkUrl100 = [item objectForKey:@"artworkUrl100"];
-                        NSLog(@"%@",feedURL);
+                        NSString *artworkUrl60 = [item objectForKey:@"artworkUrl60"];
+                        NSLog(@"%@",artworkUrl100);
                         tmpDict = [[NSMutableDictionary alloc] init];
                         [tmpDict setValue:collectionId forKey:@"collectionId"];
                         [tmpDict setValue:collectionName forKey:@"collectionName"];
                         [tmpDict setValue:artistName forKey:@"artistName"];
+                        [tmpDict setValue:feedURL forKey:@"feedUrl"];
                         [tmpDict setValue:podcastURL forKey:@"podcastURL"];
                         [tmpDict setValue:artworkUrl100 forKey:@"artworkUrl100"];
+                        [tmpDict setValue:artworkUrl60 forKey:@"artworkUrl60"];
                         [self.list addObject:tmpDict];
                         
                     }
@@ -108,7 +115,8 @@
     
     
     
-
+    //[(UITableView *)[self.view viewWithTag:1] ];
+    [(UITableView *)[self.view viewWithTag:1] reloadData];
 }
 - (void)viewDidUnload {
     [self setSearchTextBox:nil];
@@ -119,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.list.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,7 +138,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *searchResultCell = [tableView dequeueReusableCellWithIdentifier:@"SearchResultCell"];
-    searchResultCell.textLabel.text = @"OK";
+    searchResultCell.textLabel.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"collectionName"];
+    EGOImageView *eGOImageView = [[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"PodCare114.png"]];
+    NSURL *url = [NSURL URLWithString:[[self.list objectAtIndex:indexPath.row] objectForKey:@"artworkUrl100"]];
+    
+    searchResultCell.imageView.image = [UIImage imageNamed:@"PodCare114.png"];
+    eGOImageView.frame = CGRectMake(0, 0, searchResultCell.imageView.frame.size.width, searchResultCell.imageView.frame.size.height);
+    
+    [searchResultCell.imageView addSubview:eGOImageView];
+    eGOImageView.imageURL = url;
+    searchResultCell.detailTextLabel.text = [[NSString alloc]initWithFormat:@"Artists: %@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"artistName"]];
     return searchResultCell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showSearchDetail"]) {
+        NSIndexPath *indexPath = [(UITableView *)[self.view viewWithTag:1] indexPathForSelectedRow];
+        NSDate *object = @"2011-1-1";//_objects[indexPath.row];
+        //[[segue destinationViewController] setDetailItem:object];
+    }
 }
 @end
