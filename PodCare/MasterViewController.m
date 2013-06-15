@@ -77,8 +77,10 @@
                         
                         NSDictionary *item = resultArr[i];
                         NSDictionary *mydict3 = [item objectForKey:@"author"];
-                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
+                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];                        
                         NSString *author = [mydict4 objectForKey:@"label"];
+                        NSDictionary *mydict8 = [mydict3 objectForKey:@"uri"];
+                        NSString *reviewerURI = [mydict8 objectForKey:@"label"];
                         //NSArray *result = (NSArray *)mydict4;
                         NSDictionary *mydict5 = [item objectForKey:@"im:rating"];
                         NSString *star = [mydict5 objectForKey:@"label"];
@@ -92,6 +94,7 @@
                         [tmpDict setValue:star forKey:@"star"];
                         [tmpDict setValue:title forKey:@"title"];
                         [tmpDict setValue:content forKey:@"content"];
+                        [tmpDict setValue:reviewerURI forKey:@"reviewerURI"];
                         [self.list addObject:tmpDict];
                         
                     }}
@@ -254,6 +257,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = @"2011-1-1";//_objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setReviewerURI:[[self.list objectAtIndex:indexPath.row] objectForKey:@"reviewerURI"]];
     }
 }
 
