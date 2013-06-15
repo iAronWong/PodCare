@@ -15,5 +15,5 @@
 @property (nonatomic,strong) NSData *receivedData;
 @property (nonatomic,strong) NSMutableArray *list;
 @property (nonatomic,strong) NSString *countryString;
-
+@property (nonatomic,strong) NSString *collectionId;
 @end

@@ -66,7 +66,9 @@
         NSInteger selectedRow=[self.contryPicker selectedRowInComponent:0];
         //当前picker View选择的行号
         NSString *tmpStr = arr[selectedRow];
+        NSString *collectionId = [[NSString alloc]initWithFormat:@"%@",[self.podcastInfo objectForKey:@"collectionId"]];
         [[segue destinationViewController] setCountryString:tmpStr];
+        [[segue destinationViewController] setCollectionId:collectionId];
     }
 }
 @end

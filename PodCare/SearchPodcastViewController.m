@@ -12,6 +12,7 @@
 #import "EGOImageView.h"
 //#import "EGOCache.h"
 //#import "EGOImageLoader.h"
+#import "FirstViewController.h"
 @interface SearchPodcastViewController ()
 {
     
@@ -155,8 +156,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showSearchDetail"]) {
         NSIndexPath *indexPath = [(UITableView *)[self.view viewWithTag:1] indexPathForSelectedRow];
-        NSDate *object = @"2011-1-1";//_objects[indexPath.row];
-        //[[segue destinationViewController] setDetailItem:object];
+        NSDictionary *tmpDict = [self.list objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setPodcastInfo:tmpDict];
     }
 }
 @end
