@@ -13,7 +13,7 @@
 #import "JSON.h"
 
 @interface MasterViewController () {
-    NSInteger i;
+    NSInteger ii;
 }
 @end
 
@@ -75,8 +75,8 @@
     int64_t delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    i++;
-    [self loadDataForPage:(i+1)];
+    ii++;
+    [self loadDataForPage:(ii+1)];
     [self.tableView reloadData];
     __weak MasterViewController *weakSelf = self;
     [weakSelf.tableView.infiniteScrollingView stopAnimating];
@@ -270,9 +270,61 @@
     //cell.contentView.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
     //cell.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
     //cell.c
-     NSString *content = [NSString stringWithFormat:@"%d.Author:%@  Star:%@  CommentTitle:%@  Content:%@",indexPath.row+1,[[self.list objectAtIndex:indexPath.row] objectForKey:@"author"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"title"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
+     NSString *content = [NSString stringWithFormat:@"%@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
+    cell.authorlabel.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"author"];
     cell.commentCell.text = content;
+    cell.commentTitleLable.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.xuhao.text = [NSString stringWithFormat:@"%d",(indexPath.row+1)];
+    NSInteger number =[[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"] intValue];
+    if (number == 1)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star2.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+    }
+    else if (number == 2)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+    }
+    else if (number == 3)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+    }
+    else if (number == 4)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star4.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+    }
+    else
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star4.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star5.image = [UIImage imageNamed:@"star.jpg"];
+    }
+    
     return cell;
+}
+
+- (void)setStar:(NSInteger)number 
+{
+    if (number == 1) {
+        
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -281,6 +333,13 @@
     return NO;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *title = [[self.list objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *content = [[self.list objectAtIndex:indexPath.row] objectForKey:@"content"];
+    UIAlertView *aView = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [aView show];
+}
 /*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {

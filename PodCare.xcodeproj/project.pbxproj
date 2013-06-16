@@ -30,6 +30,8 @@
 		CDA34FFC176D664200B2DEFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA34FFB176D664200B2DEFF /* QuartzCore.framework */; };
 		CDA35003176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */; };
 		CDA35004176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */; };
+		CDA35008176DB0D100B2DEFF /* star-empty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDA35007176DB0D100B2DEFF /* star-empty.jpg */; };
+		CDA35012176DB3FD00B2DEFF /* star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDA35011176DB3FD00B2DEFF /* star.jpg */; };
 		CDC7F2891761EAA4000FDD73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F2881761EAA4000FDD73 /* UIKit.framework */; };
 		CDC7F28B1761EAA4000FDD73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28A1761EAA4000FDD73 /* Foundation.framework */; };
 		CDC7F28D1761EAA4000FDD73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28C1761EAA4000FDD73 /* CoreGraphics.framework */; };
@@ -107,6 +109,8 @@
 		CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		CDA35001176D667600B2DEFF /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		CDA35007176DB0D100B2DEFF /* star-empty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "star-empty.jpg"; sourceTree = "<group>"; };
+		CDA35011176DB3FD00B2DEFF /* star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star.jpg; sourceTree = "<group>"; };
 		CDC7F2851761EAA4000FDD73 /* PodCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC7F2881761EAA4000FDD73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDC7F28A1761EAA4000FDD73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -270,6 +274,8 @@
 		CDC7F27C1761EAA3000FDD73 = {
 			isa = PBXGroup;
 			children = (
+				CDA35011176DB3FD00B2DEFF /* star.jpg */,
+				CDA35007176DB0D100B2DEFF /* star-empty.jpg */,
 				CDA34FFD176D667600B2DEFF /* SVPullToRefresh */,
 				CD677F79176B6198006E2F54 /* EGO */,
 				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
@@ -433,6 +439,8 @@
 				CDC7F29F1761EAA4000FDD73 /* Default-568h@2x.png in Resources */,
 				CDC7F2A21761EAA4000FDD73 /* MainStoryboard.storyboard in Resources */,
 				CDC7F2AF1761EB96000FDD73 /* PodCare114.png in Resources */,
+				CDA35008176DB0D100B2DEFF /* star-empty.jpg in Resources */,
+				CDA35012176DB3FD00B2DEFF /* star.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

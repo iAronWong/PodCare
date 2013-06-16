@@ -69,6 +69,7 @@
         NSString *collectionId = [[NSString alloc]initWithFormat:@"%@",[self.podcastInfo objectForKey:@"collectionId"]];
         [[segue destinationViewController] setCountryString:tmpStr];
         [[segue destinationViewController] setCollectionId:collectionId];
+        
     }
 }
 @end

@@ -36,7 +36,14 @@
     [super viewDidLoad];
 	self.asiRequest.delegate = self;
     self.list = [[NSMutableArray alloc]init];
+    self.searchTextBox.delegate = self;
     
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.searchTextBox resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
