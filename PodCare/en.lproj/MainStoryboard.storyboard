@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="height" constant="527" id="oVk-FE-mO8"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultCell" textLabel="w3C-Zt-PQD" detailTextLabel="UjW-Js-BQF" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="atY-Vv-woB">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultCell" textLabel="w3C-Zt-PQD" detailTextLabel="UjW-Js-BQF" imageView="cdb-tr-A3b" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="atY-Vv-woB">
                                         <rect key="frame" x="0.0" y="22" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -43,17 +43,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="29" id="w3C-Zt-PQD">
-                                                    <rect key="frame" x="10" y="21" width="29" height="18"/>
+                                                    <rect key="frame" x="87" y="21" width="29" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="31" id="UjW-Js-BQF">
-                                                    <rect key="frame" x="10" y="39" width="31" height="15"/>
+                                                    <rect key="frame" x="87" y="39" width="31" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="star.jpg" id="cdb-tr-A3b">
+                                                    <rect key="frame" x="0.0" y="0.0" width="77" height="74"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -123,7 +127,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUX-zZ-Qgr">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="6zS-OD-RQ1"/>
+                                    <constraint firstAttribute="height" constant="379" id="gPn-ww-tPu"/>
                                     <constraint firstAttribute="width" constant="336" id="hSK-gM-zh4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -150,9 +154,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ItX-jl-sZ0" firstAttribute="trailing" secondItem="cD4-Vx-HMD" secondAttribute="trailing" type="default" id="P6P-sY-gxC"/>
-                            <constraint firstItem="gUX-zZ-Qgr" firstAttribute="top" secondItem="cD4-Vx-HMD" secondAttribute="top" constant="243" id="dvp-fZ-1KE"/>
-                            <constraint firstItem="gUX-zZ-Qgr" firstAttribute="centerX" secondItem="ItX-jl-sZ0" secondAttribute="centerX" type="default" id="fzo-6B-6ix"/>
+                            <constraint firstItem="gUX-zZ-Qgr" firstAttribute="centerX" secondItem="ItX-jl-sZ0" secondAttribute="centerX" type="default" id="AZm-ID-2op"/>
+                            <constraint firstItem="gUX-zZ-Qgr" firstAttribute="centerX" secondItem="cD4-Vx-HMD" secondAttribute="centerX" type="default" id="TH6-NB-9Y7"/>
+                            <constraint firstItem="gUX-zZ-Qgr" firstAttribute="top" secondItem="cD4-Vx-HMD" secondAttribute="top" constant="125" id="t10-cZ-vmf"/>
                             <constraint firstItem="ItX-jl-sZ0" firstAttribute="leading" secondItem="cD4-Vx-HMD" secondAttribute="leading" type="default" id="vbd-VF-OIv"/>
                             <constraint firstItem="ItX-jl-sZ0" firstAttribute="top" secondItem="cD4-Vx-HMD" secondAttribute="top" type="default" id="z5F-EB-xMW"/>
                         </constraints>

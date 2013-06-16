@@ -11,7 +11,7 @@
 
 @interface FirstViewController ()
 {
-    NSArray *arr;
+    NSArray *arr1,*arr2;
 }
 @end
 
@@ -29,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arr = [[NSArray alloc]initWithObjects:@"JP",@"CN",@"US",nil];
+    arr2 = [[NSArray alloc]initWithObjects:@"AU",@"BR",@"CA",@"CN",@"DE",@"GB",@"FR",@"HK",@"IN",@"IE",@"IT",@"JP",@"MO",@"SG",@"TW",@"US",nil];
+    arr1 = [[NSArray alloc]initWithObjects:@"Australia",@"Brazil",@"Canada",@"中国",@"Germany",@"UnitedKingdom",@"France",@"HongKong",@"India",@"Ireland",@"Italia",@"Japan",@"澳門",@"Singapore",@"台灣",@"United States",nil];
 
 }
 
@@ -47,17 +48,34 @@
 #pragma -- Picker View
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return arr.count;
+    return arr1.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return arr[row];
+    if (component == 0) {
+        return arr2[row];
+    }
+    else
+    {
+        return arr1[row];
+    }
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        [pickerView selectRow:row inComponent:1 animated:YES];
+    }
+    else
+    {
+        [pickerView selectRow:row inComponent:0 animated:YES];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -65,7 +83,7 @@
     if ([[segue identifier] isEqualToString:@"beginCheck"]) {
         NSInteger selectedRow=[self.contryPicker selectedRowInComponent:0];
         //当前picker View选择的行号
-        NSString *tmpStr = arr[selectedRow];
+        NSString *tmpStr = arr2[selectedRow];
         NSString *collectionId = [[NSString alloc]initWithFormat:@"%@",[self.podcastInfo objectForKey:@"collectionId"]];
         [[segue destinationViewController] setCountryString:tmpStr];
         [[segue destinationViewController] setCollectionId:collectionId];
