@@ -149,14 +149,14 @@
 {
     UITableViewCell *searchResultCell = [tableView dequeueReusableCellWithIdentifier:@"SearchResultCell"];
     searchResultCell.textLabel.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"collectionName"];
-    //EGOImageView *eGOImageView = [[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"PodCare114.png"]];
+    EGOImageView *eGOImageView = [[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"PodCare114.png"]];
     NSURL *url = [NSURL URLWithString:[[self.list objectAtIndex:indexPath.row] objectForKey:@"artworkUrl100"]];
-    EGOImageView *eGOImageView = (EGOImageView *)searchResultCell.imageView;
+    //EGOImageView *eGOImageView = (EGOImageView *)searchResultCell.imageView;
     //eGOImageView.placeholderImage = [UIImage imageNamed:@"PodCare114.png"];
     //searchResultCell.imageView.image = [UIImage imageNamed:@"PodCare114.png"];
-    //eGOImageView.frame = CGRectMake(0, 0, searchResultCell.imageView.frame.size.width, searchResultCell.imageView.frame.size.height);
+    eGOImageView.frame = CGRectMake(0, 0, searchResultCell.imageView.frame.size.width, searchResultCell.imageView.frame.size.height);
     
-    //[searchResultCell addSubview:eGOImageView];
+    [searchResultCell addSubview:eGOImageView];
     eGOImageView.imageURL = url;
     
     searchResultCell.detailTextLabel.text = [[NSString alloc]initWithFormat:@"Artists: %@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"artistName"]];
