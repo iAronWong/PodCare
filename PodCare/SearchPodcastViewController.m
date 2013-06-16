@@ -43,6 +43,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.searchTextBox resignFirstResponder];
+    [self startSearch:nil];
     return YES;
 }
 
