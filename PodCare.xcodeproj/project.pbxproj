@@ -27,6 +27,9 @@
 		CD91172A1764D7360058F13A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91171E1764D7360058F13A /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9B42D11765842C005849C8 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9B42D01765842C005849C8 /* CustomCell.m */; };
 		CD9D2A9C1765A970000014AC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9D2A9B1765A970000014AC /* FirstViewController.m */; };
+		CDA34FFC176D664200B2DEFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA34FFB176D664200B2DEFF /* QuartzCore.framework */; };
+		CDA35003176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */; };
+		CDA35004176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */; };
 		CDC7F2891761EAA4000FDD73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F2881761EAA4000FDD73 /* UIKit.framework */; };
 		CDC7F28B1761EAA4000FDD73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28A1761EAA4000FDD73 /* Foundation.framework */; };
 		CDC7F28D1761EAA4000FDD73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28C1761EAA4000FDD73 /* CoreGraphics.framework */; };
@@ -98,6 +101,12 @@
 		CD9B42D01765842C005849C8 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		CD9D2A9A1765A970000014AC /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		CD9D2A9B1765A970000014AC /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		CDA34FFB176D664200B2DEFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CDA34FFE176D667600B2DEFF /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		CDA34FFF176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		CDA35001176D667600B2DEFF /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		CDC7F2851761EAA4000FDD73 /* PodCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC7F2881761EAA4000FDD73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDC7F28A1761EAA4000FDD73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA34FFC176D664200B2DEFF /* QuartzCore.framework in Frameworks */,
 				CDC7F3331761F108000FDD73 /* libz.dylib in Frameworks */,
 				CDC7F28D1761EAA4000FDD73 /* CoreGraphics.framework in Frameworks */,
 				CDC7F3311761F0AB000FDD73 /* MobileCoreServices.framework in Frameworks */,
@@ -245,9 +255,22 @@
 			path = SBJSON;
 			sourceTree = "<group>";
 		};
+		CDA34FFD176D667600B2DEFF /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				CDA34FFE176D667600B2DEFF /* SVPullToRefresh.h */,
+				CDA34FFF176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.h */,
+				CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */,
+				CDA35001176D667600B2DEFF /* UIScrollView+SVPullToRefresh.h */,
+				CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
 		CDC7F27C1761EAA3000FDD73 = {
 			isa = PBXGroup;
 			children = (
+				CDA34FFD176D667600B2DEFF /* SVPullToRefresh */,
 				CD677F79176B6198006E2F54 /* EGO */,
 				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
 				CD9117041764D7360058F13A /* SBJSON */,
@@ -269,6 +292,7 @@
 		CDC7F2871761EAA4000FDD73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDA34FFB176D664200B2DEFF /* QuartzCore.framework */,
 				CDC7F3321761F108000FDD73 /* libz.dylib */,
 				CDC7F3301761F0AB000FDD73 /* MobileCoreServices.framework */,
 				CDC7F32E1761F08A000FDD73 /* SystemConfiguration.framework */,
@@ -452,6 +476,8 @@
 				CD677F8A176B6198006E2F54 /* EGOImageLoadConnection.m in Sources */,
 				CD677F8B176B6198006E2F54 /* EGOImageLoader.m in Sources */,
 				CD677F8C176B6198006E2F54 /* EGOImageView.m in Sources */,
+				CDA35003176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				CDA35004176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

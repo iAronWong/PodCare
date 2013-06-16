@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 //@class ASIHTTPRequest;
 #import "CustomCell.h"
+#import "SVPullToRefresh.h"
 @interface MasterViewController : UITableViewController<ASIHTTPRequestDelegate>
 @property (nonatomic,strong) ASIHTTPRequest *request;
 @property (nonatomic,strong) NSData *receivedData;

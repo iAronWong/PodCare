@@ -13,7 +13,7 @@
 #import "JSON.h"
 
 @interface MasterViewController () {
-    //NSMutableArray *_objects;
+    NSInteger i;
 }
 @end
 
@@ -34,19 +34,73 @@
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    self.list = [[NSMutableArray alloc]init];
-    [self loadData];
+    //self.list = [[NSMutableArray alloc]init];
+    [self loadDataForPage:1];
+    
+    __weak MasterViewController *weakSelf = self;
+    
+    // setup pull-to-refresh
+    /*[self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];*/
+    
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
+
     
     
 
     
 }
+
+- (void)insertRowAtTop {
+    /*__weak MasterViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        [weakSelf.dataSource insertObject:[NSDate date] atIndex:0];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });*/
+}
+
+
+- (void)insertRowAtBottom {
+    int64_t delayInSeconds = 1.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    i++;
+    [self loadDataForPage:(i+1)];
+    [self.tableView reloadData];
+    __weak MasterViewController *weakSelf = self;
+    [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
+    /*__weak MasterViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        [weakSelf.dataSource addObject:[weakSelf.dataSource.lastObject dateByAddingTimeInterval:-90]];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });*/
+}
+
 #pragma mark - loadData
 
-- (void)loadData
+- (void)loadDataForPage:(NSInteger)page
 {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=%@/page=1/json",self.countryString,self.collectionId];
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=%@/page=%@/json",self.countryString,self.collectionId,[NSString stringWithFormat:@"%d",page]];
     //http://itunes.apple.com/CN/rss/customerreviews/id=463407457/page=2/xml
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
@@ -66,6 +120,9 @@
             {
                 
             }else{
+                if (page == 1) {
+                    self.list = [[NSMutableArray alloc]init];
+                }
                 NSDictionary *mydict = [result JSONValue];
                 NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
                 NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];

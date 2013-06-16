@@ -47,6 +47,7 @@
 
 - (IBAction)startSearch:(id)sender
 {
+    [self.searchTextBox resignFirstResponder];
     NSString *str = self.searchTextBox.text;
     //NSStringEncoding enc =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSString *str2 = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
