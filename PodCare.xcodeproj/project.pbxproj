@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD15019C1769F25400EA546E /* SearchPodcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15019B1769F25400EA546E /* SearchPodcastViewController.m */; };
+		CD32467B176E15DD003FB97D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD32467A176E15DD003FB97D /* Default-568h@2x.png */; };
 		CD677F88176B6198006E2F54 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F7C176B6198006E2F54 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F89176B6198006E2F54 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F7F176B6198006E2F54 /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F8A176B6198006E2F54 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F82176B6198006E2F54 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		CD15019A1769F25400EA546E /* SearchPodcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPodcastViewController.h; sourceTree = "<group>"; };
 		CD15019B1769F25400EA546E /* SearchPodcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPodcastViewController.m; sourceTree = "<group>"; };
+		CD32467A176E15DD003FB97D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CD677F7B176B6198006E2F54 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		CD677F7C176B6198006E2F54 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		CD677F7E176B6198006E2F54 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		CDC7F27C1761EAA3000FDD73 = {
 			isa = PBXGroup;
 			children = (
+				CD32467A176E15DD003FB97D /* Default-568h@2x.png */,
 				CDA35011176DB3FD00B2DEFF /* star.jpg */,
 				CDA35007176DB0D100B2DEFF /* star-empty.jpg */,
 				CDA34FFD176D667600B2DEFF /* SVPullToRefresh */,
@@ -441,6 +444,7 @@
 				CDC7F2AF1761EB96000FDD73 /* PodCare114.png in Resources */,
 				CDA35008176DB0D100B2DEFF /* star-empty.jpg in Resources */,
 				CDA35012176DB3FD00B2DEFF /* star.jpg in Resources */,
+				CD32467B176E15DD003FB97D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

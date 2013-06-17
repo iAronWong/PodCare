@@ -9,11 +9,12 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
-//#import "ASIHTTPRequest.h"
+
 #import "JSON.h"
 
 @interface MasterViewController () {
     NSInteger ii;
+    
 }
 @end
 
@@ -34,7 +35,7 @@
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    //self.list = [[NSMutableArray alloc]init];
+    self.list = [[NSMutableArray alloc]init];
     [self loadDataForPage:1];
     
     __weak MasterViewController *weakSelf = self;
@@ -48,9 +49,9 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
     }];
-
+    //self.request.delegate = self;
     
-    
+   
 
     
 }
@@ -72,13 +73,15 @@
 
 
 - (void)insertRowAtBottom {
-    int64_t delayInSeconds = 1.0;
+        
+    __weak MasterViewController *weakSelf = self;
+    int64_t delayInSeconds = 1.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    ii++;
-    [self loadDataForPage:(ii+1)];
-    [self.tableView reloadData];
-    __weak MasterViewController *weakSelf = self;
+        ii++;
+        [self loadDataForPage:(ii+1)];
+
+       
     [weakSelf.tableView.infiniteScrollingView stopAnimating];
     });
     /*__weak MasterViewController *weakSelf = self;
@@ -99,15 +102,28 @@
 
 - (void)loadDataForPage:(NSInteger)page
 {
+    [self.request clearDelegatesAndCancel];
     
     NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=%@/page=%@/json",self.countryString,self.collectionId,[NSString stringWithFormat:@"%d",page]];
     //http://itunes.apple.com/CN/rss/customerreviews/id=463407457/page=2/xml
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [self setRequest:[ASIHTTPRequest requestWithURL:url]];
-    //self.request.delegate = self;
-    [self.request startSynchronous];
     [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:YES];
+    self.request.delegate = self;
+    [self.request startAsynchronous];
+    
+    
+
+    
+
+}
+
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *str = [request responseString];
+    NSLog(@"%@",str);
     NSLog(@"sss");
     if (self.request) {
         if ([self.request error]) {
@@ -120,9 +136,7 @@
             {
                 
             }else{
-                if (page == 1) {
-                    self.list = [[NSMutableArray alloc]init];
-                }
+                
                 NSDictionary *mydict = [result JSONValue];
                 NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
                 NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
@@ -134,7 +148,7 @@
                         
                         NSDictionary *item = resultArr[i];
                         NSDictionary *mydict3 = [item objectForKey:@"author"];
-                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];                        
+                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
                         NSString *author = [mydict4 objectForKey:@"label"];
                         NSDictionary *mydict8 = [mydict3 objectForKey:@"uri"];
                         NSString *reviewerURI = [mydict8 objectForKey:@"label"];
@@ -155,76 +169,25 @@
                         [self.list addObject:tmpDict];
                         
                     }}
-                /*NSArray *resultArr = (NSArray *)mydict1;
-                 //NSArray *resultArr = (NSArray *)mydict;
-                 for (NSDictionary *item in resultArr) {
-                 tmpDict = [[NSMutableDictionary alloc] init];
-                 [tmpDict setValue:[item objectForKey:@"city_en"] forKey:@"city_en"];
-                 //[tmpDict setValue:[item objectForKey:@"x_pic"] forKey:@"x_pic"];
-                 [self.list addObject:tmpDict];
-                 
-                 }*/
+                
             }
         }
-    }else{
-        
     }
-
-    
-
-}
-
-- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
-{
-    NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"1:%@",result);
-    char chr = data;
-    
-    
-}
-
-
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    //NSString *str = [request responseString];
-    //NSLog(@"%@",str);
-    /*if (request)
+    else
     {
-        if ([request error])
-        {
-            NSString *result = [[request error] localizedDescription];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-        else if ([request responseString])
-        {
-            NSString *result = [request responseString];
-            if([result isEqualToString:@"40023"] || [result isEqualToString:@"40024"])
-            {
-                
-            }
-            else
-            {
-                NSLog(@"%@",[request responseString]);
-                
-            }
-            
-        }
         
     }
-    NSString *str = [[NSString alloc]initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-     */
-    //NSString *str = [[NSString alloc]initWithData:request.responseData encoding:NSUTF8StringEncoding];
-    //NSLog(@"1:%@",str);
-    //NSLog(@"finish :%@ ,%d" ,str,request.responseEncoding);
+    [self.tableView reloadData];
+    
+
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSString *result = [[request error] localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:result delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
-    
+
     
 }
 
@@ -379,6 +342,7 @@
 
 - (void)viewDidUnload
 {
+    [self.request clearDelegatesAndCancel];
     [super viewDidUnload];
 }
 @end
