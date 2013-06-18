@@ -41,7 +41,9 @@
     [self.asiRequest setUserAgentString:@"iTunes/11.0.3 (Macintosh; OS X 10.8.2) AppleWebKit/536.26.14"];
     [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:YES];
     [self.asiRequest startSynchronous];
-    [self.webView loadData:self.asiRequest.responseData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:nil];
+    //[self.webView loadData:self.asiRequest.responseData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:self.asiRequest.url];
+    //[self.webView loadRequest:self.asiRequest];
+    [self.webView loadHTMLString:self.asiRequest.responseString baseURL:self.asiRequest.url];
     NSLog(@"sss");
     
 }

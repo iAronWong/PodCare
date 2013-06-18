@@ -241,43 +241,43 @@
     NSInteger number =[[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"] intValue];
     if (number == 1)
     {
-        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star2.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star3.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
     }
     else if (number == 2)
     {
-        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star3.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
     }
     else if (number == 3)
     {
-        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star4.image = [UIImage imageNamed:@"star-empty.jpg"];
-        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
     }
     else if (number == 4)
     {
-        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star4.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star5.image = [UIImage imageNamed:@"star-empty.jpg"];
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
     }
     else
     {
-        cell.star1.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star2.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star3.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star4.image = [UIImage imageNamed:@"star.jpg"];
-        cell.star5.image = [UIImage imageNamed:@"star.jpg"];
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star.png"];
+        cell.star5.image = [UIImage imageNamed:@"star.png"];
     }
     
     return cell;
