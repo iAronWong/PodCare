@@ -89,24 +89,33 @@
                     </view>
                     <navigationItem key="navigationItem" id="iVY-3D-FEe">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Vtc-RY-vUP">
-                            <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Podcast Name Here!" minimumFontSize="17" clearButtonMode="whileEditing" id="Rl7-Vv-rzk">
-                                <rect key="frame" x="5" y="7" width="254" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="GO" id="apa-TO-tUU">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Podcast's Name or Artists' Name" minimumFontSize="15" clearButtonMode="whileEditing" id="QbD-F6-e3j">
+                            <rect key="frame" x="5" y="7" width="241" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="tUk-nD-tZj">
                             <connections>
-                                <action selector="startSearch:" destination="aX5-k6-RGY" id="l7x-EM-AiY"/>
+                                <action selector="startSearch:" destination="aX5-k6-RGY" id="b30-XU-IMy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchTextBox" destination="Rl7-Vv-rzk" id="Nfp-wb-o46"/>
+                        <outlet property="searchDisplayController" destination="Aue-XK-zFe" id="3Wn-fE-VdJ"/>
+                        <outlet property="searchTextBox" destination="QbD-F6-e3j" id="ulL-lZ-X6C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5M-yi-KSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Aue-XK-zFe">
+                    <connections>
+                        <outlet property="delegate" destination="aX5-k6-RGY" id="ue5-Nl-T47"/>
+                        <outlet property="searchContentsController" destination="aX5-k6-RGY" id="JcF-xt-xxP"/>
+                        <outlet property="searchResultsDataSource" destination="aX5-k6-RGY" id="aGw-yN-eF7"/>
+                        <outlet property="searchResultsDelegate" destination="aX5-k6-RGY" id="lIw-xQ-tOq"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="543" y="732"/>
         </scene>
@@ -360,49 +369,6 @@
         <image name="star-empty.png" width="230" height="219"/>
         <image name="star.png" width="220" height="211"/>
     </resources>
-    <classes>
-        <class className="CustomCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorlabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentCell" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentTitleLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="star1" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="star2" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="star3" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="star4" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="star5" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="starCell" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="xuhao" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="contryPicker" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SearchPodcastViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchPodcastViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="startSearch:"/>
-                <relationship kind="outlet" name="searchTextBox" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
+#import "ASIWebPageRequest.h"
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;

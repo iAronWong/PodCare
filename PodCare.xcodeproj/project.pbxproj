@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		CD0DC51C1770688200E39667 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC51B1770688200E39667 /* star.png */; };
 		CD0DC51E17706B7400E39667 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DC51D17706B7400E39667 /* star-empty.png */; };
+		CD0DC5221770A0E000E39667 /* ASIWebPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DC5211770A0E000E39667 /* ASIWebPageRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD0DC5251770A1F000E39667 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0DC5241770A1F000E39667 /* libxml2.dylib */; };
 		CD15019C1769F25400EA546E /* SearchPodcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15019B1769F25400EA546E /* SearchPodcastViewController.m */; };
-		CD32467B176E15DD003FB97D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD32467A176E15DD003FB97D /* Default-568h@2x.png */; };
 		CD677F88176B6198006E2F54 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F7C176B6198006E2F54 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F89176B6198006E2F54 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F7F176B6198006E2F54 /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F8A176B6198006E2F54 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F82176B6198006E2F54 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -59,11 +60,15 @@
 		CDC7F32F1761F08A000FDD73 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F32E1761F08A000FDD73 /* SystemConfiguration.framework */; };
 		CDC7F3311761F0AB000FDD73 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F3301761F0AB000FDD73 /* MobileCoreServices.framework */; };
 		CDC7F3331761F108000FDD73 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F3321761F108000FDD73 /* libz.dylib */; };
+		CDF5F9161771D4280058751F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD32467A176E15DD003FB97D /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CD0DC51B1770688200E39667 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		CD0DC51D17706B7400E39667 /* star-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-empty.png"; sourceTree = "<group>"; };
+		CD0DC5201770A0E000E39667 /* ASIWebPageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIWebPageRequest.h; sourceTree = "<group>"; };
+		CD0DC5211770A0E000E39667 /* ASIWebPageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIWebPageRequest.m; sourceTree = "<group>"; };
+		CD0DC5241770A1F000E39667 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		CD15019A1769F25400EA546E /* SearchPodcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPodcastViewController.h; sourceTree = "<group>"; };
 		CD15019B1769F25400EA546E /* SearchPodcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPodcastViewController.m; sourceTree = "<group>"; };
 		CD32467A176E15DD003FB97D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -165,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0DC5251770A1F000E39667 /* libxml2.dylib in Frameworks */,
 				CDA34FFC176D664200B2DEFF /* QuartzCore.framework in Frameworks */,
 				CDC7F3331761F108000FDD73 /* libz.dylib in Frameworks */,
 				CDC7F28D1761EAA4000FDD73 /* CoreGraphics.framework in Frameworks */,
@@ -179,6 +185,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD0DC51F1770A0E000E39667 /* ASIWebPageRequest */ = {
+			isa = PBXGroup;
+			children = (
+				CD0DC5201770A0E000E39667 /* ASIWebPageRequest.h */,
+				CD0DC5211770A0E000E39667 /* ASIWebPageRequest.m */,
+			);
+			path = ASIWebPageRequest;
+			sourceTree = "<group>";
+		};
 		CD677F79176B6198006E2F54 /* EGO */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +318,7 @@
 			children = (
 				CDA34FFB176D664200B2DEFF /* QuartzCore.framework */,
 				CDC7F3321761F108000FDD73 /* libz.dylib */,
+				CD0DC5241770A1F000E39667 /* libxml2.dylib */,
 				CDC7F3301761F0AB000FDD73 /* MobileCoreServices.framework */,
 				CDC7F32E1761F08A000FDD73 /* SystemConfiguration.framework */,
 				CDC7F32C1761F068000FDD73 /* CFNetwork.framework */,
@@ -351,6 +367,7 @@
 		CDC7F2B01761EDEE000FDD73 /* ASIHttpRequest */ = {
 			isa = PBXGroup;
 			children = (
+				CD0DC51F1770A0E000E39667 /* ASIWebPageRequest */,
 				CDC7F2B11761EDEE000FDD73 /* ASIAuthenticationDialog.h */,
 				CDC7F2B21761EDEE000FDD73 /* ASIAuthenticationDialog.m */,
 				CDC7F2B31761EDEE000FDD73 /* ASICacheDelegate.h */,
@@ -442,9 +459,9 @@
 				CDC7F29F1761EAA4000FDD73 /* Default-568h@2x.png in Resources */,
 				CDC7F2A21761EAA4000FDD73 /* MainStoryboard.storyboard in Resources */,
 				CDC7F2AF1761EB96000FDD73 /* PodCare114.png in Resources */,
-				CD32467B176E15DD003FB97D /* Default-568h@2x.png in Resources */,
 				CD0DC51C1770688200E39667 /* star.png in Resources */,
 				CD0DC51E17706B7400E39667 /* star-empty.png in Resources */,
+				CDF5F9161771D4280058751F /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +507,7 @@
 				CD677F8C176B6198006E2F54 /* EGOImageView.m in Sources */,
 				CDA35003176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				CDA35004176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m in Sources */,
+				CD0DC5221770A0E000E39667 /* ASIWebPageRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,8 +558,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -564,8 +584,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

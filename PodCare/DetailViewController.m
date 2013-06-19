@@ -8,7 +8,7 @@
 
 #import "DetailViewController.h"
 #import "ASIHTTPRequest.h"
-
+#import "ASIDownloadCache.h"
 @interface DetailViewController ()
 - (void)configureView;
 @end
@@ -40,13 +40,29 @@
     [self setAsiRequest:[ASIHTTPRequest requestWithURL:url]];
     [self.asiRequest setUserAgentString:@"iTunes/11.0.3 (Macintosh; OS X 10.8.2) AppleWebKit/536.26.14"];
     [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:YES];
-    [self.asiRequest startSynchronous];
-    //[self.webView loadData:self.asiRequest.responseData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:self.asiRequest.url];
-    //[self.webView loadRequest:self.asiRequest];
-    [self.webView loadHTMLString:self.asiRequest.responseString baseURL:self.asiRequest.url];
-    NSLog(@"sss");
+    
+    [self.asiRequest startAsynchronous];
+    self.asiRequest.delegate = self;
+   
     
 }
+#pragma -- ASIHttp Delegate
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+
+    [self.webView loadHTMLString:self.asiRequest.responseString baseURL:self.asiRequest.url];
+    NSLog(@"sss");
+
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+   /* NSString *result = [[self.asiRequest error] localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:result delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];*/
+   // something is wrong here;
+}
+
 
 - (void)viewDidLoad
 {

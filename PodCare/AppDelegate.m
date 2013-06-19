@@ -10,6 +10,13 @@
 
 @implementation AppDelegate
 
++ (void)initialize {
+    // Set user agent (the only problem is that we can't modify the User-Agent later in the program)
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:@"iTunes/11.0.3 (Macintosh; OS X 10.8.2) AppleWebKit/536.26.14", @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    //[dictionnary release];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
