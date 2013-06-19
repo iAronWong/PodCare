@@ -345,4 +345,9 @@
     [self.request clearDelegatesAndCancel];
     [super viewDidUnload];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.request clearDelegatesAndCancel];
+}
 @end

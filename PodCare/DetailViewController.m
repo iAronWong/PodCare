@@ -80,5 +80,12 @@
 - (void)viewDidUnload {
     [self setWebView:nil];
     [super viewDidUnload];
+    
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.asiRequest clearDelegatesAndCancel];
 }
 @end

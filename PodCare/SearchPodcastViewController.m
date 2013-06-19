@@ -176,4 +176,9 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:result delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.asiRequest clearDelegatesAndCancel];
+}
 @end

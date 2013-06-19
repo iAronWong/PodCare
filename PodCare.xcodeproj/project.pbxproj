@@ -40,8 +40,6 @@
 		CDC7F2931761EAA4000FDD73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F2911761EAA4000FDD73 /* InfoPlist.strings */; };
 		CDC7F2951761EAA4000FDD73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7F2941761EAA4000FDD73 /* main.m */; };
 		CDC7F2991761EAA4000FDD73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7F2981761EAA4000FDD73 /* AppDelegate.m */; };
-		CDC7F29B1761EAA4000FDD73 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F29A1761EAA4000FDD73 /* Default.png */; };
-		CDC7F29D1761EAA4000FDD73 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F29C1761EAA4000FDD73 /* Default@2x.png */; };
 		CDC7F29F1761EAA4000FDD73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F29E1761EAA4000FDD73 /* Default-568h@2x.png */; };
 		CDC7F2A21761EAA4000FDD73 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F2A01761EAA4000FDD73 /* MainStoryboard.storyboard */; };
 		CDC7F2A51761EAA4000FDD73 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7F2A41761EAA4000FDD73 /* MasterViewController.m */; };
@@ -60,7 +58,8 @@
 		CDC7F32F1761F08A000FDD73 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F32E1761F08A000FDD73 /* SystemConfiguration.framework */; };
 		CDC7F3311761F0AB000FDD73 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F3301761F0AB000FDD73 /* MobileCoreServices.framework */; };
 		CDC7F3331761F108000FDD73 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F3321761F108000FDD73 /* libz.dylib */; };
-		CDF5F9161771D4280058751F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD32467A176E15DD003FB97D /* Default-568h@2x.png */; };
+		CDF5F9181771D59D0058751F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF5F9171771D59D0058751F /* Default-568h@2x.png */; };
+		CDF5F91D1771FCA30058751F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF5F91C1771FCA30058751F /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +70,6 @@
 		CD0DC5241770A1F000E39667 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		CD15019A1769F25400EA546E /* SearchPodcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPodcastViewController.h; sourceTree = "<group>"; };
 		CD15019B1769F25400EA546E /* SearchPodcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPodcastViewController.m; sourceTree = "<group>"; };
-		CD32467A176E15DD003FB97D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CD677F7B176B6198006E2F54 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		CD677F7C176B6198006E2F54 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		CD677F7E176B6198006E2F54 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -163,6 +161,8 @@
 		CDC7F32E1761F08A000FDD73 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CDC7F3301761F0AB000FDD73 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CDC7F3321761F108000FDD73 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CDF5F9171771D59D0058751F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CDF5F91C1771FCA30058751F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,12 +291,13 @@
 		CDC7F27C1761EAA3000FDD73 = {
 			isa = PBXGroup;
 			children = (
-				CD32467A176E15DD003FB97D /* Default-568h@2x.png */,
+				CDF5F91C1771FCA30058751F /* Default@2x.png */,
+				CDF5F9171771D59D0058751F /* Default-568h@2x.png */,
 				CD0DC51B1770688200E39667 /* star.png */,
 				CD0DC51D17706B7400E39667 /* star-empty.png */,
+				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
 				CDA34FFD176D667600B2DEFF /* SVPullToRefresh */,
 				CD677F79176B6198006E2F54 /* EGO */,
-				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
 				CD9117041764D7360058F13A /* SBJSON */,
 				CDC7F2B01761EDEE000FDD73 /* ASIHttpRequest */,
 				CDC7F28E1761EAA4000FDD73 /* PodCare */,
@@ -454,14 +455,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC7F2931761EAA4000FDD73 /* InfoPlist.strings in Resources */,
-				CDC7F29B1761EAA4000FDD73 /* Default.png in Resources */,
-				CDC7F29D1761EAA4000FDD73 /* Default@2x.png in Resources */,
 				CDC7F29F1761EAA4000FDD73 /* Default-568h@2x.png in Resources */,
 				CDC7F2A21761EAA4000FDD73 /* MainStoryboard.storyboard in Resources */,
 				CDC7F2AF1761EB96000FDD73 /* PodCare114.png in Resources */,
 				CD0DC51C1770688200E39667 /* star.png in Resources */,
 				CD0DC51E17706B7400E39667 /* star-empty.png in Resources */,
-				CDF5F9161771D4280058751F /* Default-568h@2x.png in Resources */,
+				CDF5F9181771D59D0058751F /* Default-568h@2x.png in Resources */,
+				CDF5F91D1771FCA30058751F /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
