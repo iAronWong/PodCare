@@ -60,7 +60,7 @@
     //NSStringEncoding enc =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSString *str2 = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    
-    NSString *urlString = [NSString stringWithFormat:@"http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?country=cn&entity=podcast&limit=50&term=%@",str2];
+    NSString *urlString = [NSString stringWithFormat:@"http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?country=us&entity=podcast&limit=50&term=%@",str2];
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [self setAsiRequest:[ASIHTTPRequest requestWithURL:url]];
