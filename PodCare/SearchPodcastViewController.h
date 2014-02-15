@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
-@interface SearchPodcastViewController : UIViewController<ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface SearchPodcastViewController : UIViewController<ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 - (IBAction)startSearch:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextBox;
 @property (strong,nonatomic) ASIHTTPRequest *asiRequest;

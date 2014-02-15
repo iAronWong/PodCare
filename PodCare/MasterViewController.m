@@ -9,11 +9,12 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
-//#import "ASIHTTPRequest.h"
+
 #import "JSON.h"
 
 @interface MasterViewController () {
-    //NSMutableArray *_objects;
+    NSInteger ii;
+    
 }
 @end
 
@@ -35,25 +36,94 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     self.list = [[NSMutableArray alloc]init];
-    [self loadData];
+    [self loadDataForPage:1];
     
+    __weak MasterViewController *weakSelf = self;
     
+    // setup pull-to-refresh
+    /*[self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];*/
+    
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
+    //self.request.delegate = self;
+    
+   
 
     
 }
+
+- (void)insertRowAtTop {
+    /*__weak MasterViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        [weakSelf.dataSource insertObject:[NSDate date] atIndex:0];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });*/
+}
+
+
+- (void)insertRowAtBottom {
+        
+    __weak MasterViewController *weakSelf = self;
+    int64_t delayInSeconds = 1.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        ii++;
+        [self loadDataForPage:(ii+1)];
+
+       
+    [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
+    /*__weak MasterViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        [weakSelf.dataSource addObject:[weakSelf.dataSource.lastObject dateByAddingTimeInterval:-90]];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });*/
+}
+
 #pragma mark - loadData
 
-- (void)loadData
+- (void)loadDataForPage:(NSInteger)page
 {
+    [self.request clearDelegatesAndCancel];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=%@/page=1/json",self.countryString,self.collectionId];
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/%@/rss/customerreviews/id=%@/page=%@/json",self.countryString,self.collectionId,[NSString stringWithFormat:@"%d",page]];
     //http://itunes.apple.com/CN/rss/customerreviews/id=463407457/page=2/xml
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [self setRequest:[ASIHTTPRequest requestWithURL:url]];
-    //self.request.delegate = self;
-    [self.request startSynchronous];
     [ASIHTTPRequest setShouldUpdateNetworkActivityIndicator:YES];
+    self.request.delegate = self;
+    [self.request startAsynchronous];
+    
+    
+
+    
+
+}
+
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *str = [request responseString];
+    NSLog(@"%@",str);
     NSLog(@"sss");
     if (self.request) {
         if ([self.request error]) {
@@ -66,6 +136,7 @@
             {
                 
             }else{
+                
                 NSDictionary *mydict = [result JSONValue];
                 NSDictionary *mydict1 = [mydict objectForKey:@"feed"];
                 NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
@@ -77,7 +148,7 @@
                         
                         NSDictionary *item = resultArr[i];
                         NSDictionary *mydict3 = [item objectForKey:@"author"];
-                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];                        
+                        NSDictionary *mydict4 = [mydict3 objectForKey:@"name"];
                         NSString *author = [mydict4 objectForKey:@"label"];
                         NSDictionary *mydict8 = [mydict3 objectForKey:@"uri"];
                         NSString *reviewerURI = [mydict8 objectForKey:@"label"];
@@ -98,76 +169,25 @@
                         [self.list addObject:tmpDict];
                         
                     }}
-                /*NSArray *resultArr = (NSArray *)mydict1;
-                 //NSArray *resultArr = (NSArray *)mydict;
-                 for (NSDictionary *item in resultArr) {
-                 tmpDict = [[NSMutableDictionary alloc] init];
-                 [tmpDict setValue:[item objectForKey:@"city_en"] forKey:@"city_en"];
-                 //[tmpDict setValue:[item objectForKey:@"x_pic"] forKey:@"x_pic"];
-                 [self.list addObject:tmpDict];
-                 
-                 }*/
+                
             }
         }
-    }else{
-        
     }
-
-    
-
-}
-
-- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
-{
-    NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"1:%@",result);
-    char chr = data;
-    
-    
-}
-
-
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    //NSString *str = [request responseString];
-    //NSLog(@"%@",str);
-    /*if (request)
+    else
     {
-        if ([request error])
-        {
-            NSString *result = [[request error] localizedDescription];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-        else if ([request responseString])
-        {
-            NSString *result = [request responseString];
-            if([result isEqualToString:@"40023"] || [result isEqualToString:@"40024"])
-            {
-                
-            }
-            else
-            {
-                NSLog(@"%@",[request responseString]);
-                
-            }
-            
-        }
         
     }
-    NSString *str = [[NSString alloc]initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-     */
-    //NSString *str = [[NSString alloc]initWithData:request.responseData encoding:NSUTF8StringEncoding];
-    //NSLog(@"1:%@",str);
-    //NSLog(@"finish :%@ ,%d" ,str,request.responseEncoding);
+    [self.tableView reloadData];
+    
+
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSString *result = [[request error] localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:result delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:result delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
-    
+
     
 }
 
@@ -213,9 +233,61 @@
     //cell.contentView.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
     //cell.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
     //cell.c
-     NSString *content = [NSString stringWithFormat:@"%d.Author:%@  Star:%@  CommentTitle:%@  Content:%@",indexPath.row+1,[[self.list objectAtIndex:indexPath.row] objectForKey:@"author"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"title"],[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
+     NSString *content = [NSString stringWithFormat:@"%@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
+    cell.authorlabel.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"author"];
     cell.commentCell.text = content;
+    cell.commentTitleLable.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.xuhao.text = [NSString stringWithFormat:@"%d",(indexPath.row+1)];
+    NSInteger number =[[[self.list objectAtIndex:indexPath.row] objectForKey:@"star"] intValue];
+    if (number == 1)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
+    }
+    else if (number == 2)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
+    }
+    else if (number == 3)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star-empty.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
+    }
+    else if (number == 4)
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star.png"];
+        cell.star5.image = [UIImage imageNamed:@"star-empty.png"];
+    }
+    else
+    {
+        cell.star1.image = [UIImage imageNamed:@"star.png"];
+        cell.star2.image = [UIImage imageNamed:@"star.png"];
+        cell.star3.image = [UIImage imageNamed:@"star.png"];
+        cell.star4.image = [UIImage imageNamed:@"star.png"];
+        cell.star5.image = [UIImage imageNamed:@"star.png"];
+    }
+    
     return cell;
+}
+
+- (void)setStar:(NSInteger)number 
+{
+    if (number == 1) {
+        
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,6 +296,13 @@
     return NO;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *title = [[self.list objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *content = [[self.list objectAtIndex:indexPath.row] objectForKey:@"content"];
+    UIAlertView *aView = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [aView show];
+}
 /*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -263,6 +342,12 @@
 
 - (void)viewDidUnload
 {
+    [self.request clearDelegatesAndCancel];
     [super viewDidUnload];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.request clearDelegatesAndCancel];
 }
 @end
