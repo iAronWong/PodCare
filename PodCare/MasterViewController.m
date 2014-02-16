@@ -12,16 +12,30 @@
 
 #import "JSON.h"
 
-@interface MasterViewController () {
+@interface MasterViewController ()
+{
     NSInteger ii;
-    
 }
 @end
 
 @implementation MasterViewController
 @synthesize request = _request;
 @synthesize list = _list;
+- (ASIHTTPRequest *)request
+{
+    if (!_request) {
+        _request = [[ASIHTTPRequest alloc]init];
+    }
+    return _request;
+}
 
+- (NSArray *)list
+{
+    if (!_list) {
+        _list = [[NSMutableArray alloc]init];
+    }
+    return _list;
+}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -30,12 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    self.list = [[NSMutableArray alloc]init];
     [self loadDataForPage:1];
     
     __weak MasterViewController *weakSelf = self;
@@ -201,16 +209,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-*/
 
 #pragma mark - Table View
 
@@ -227,12 +225,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    //NSDate *object = _objects[indexPath.row];
-    //cell.textLabel.text = @"test";//[object description];
-    //cell.contentView.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
-    //cell.backgroundColor = [UIColor colorWithRed:123 green:0 blue:123 alpha:1];
-    //cell.c
+
      NSString *content = [NSString stringWithFormat:@"%@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"content"]];
     cell.authorlabel.text = [[self.list objectAtIndex:indexPath.row] objectForKey:@"author"];
     cell.commentCell.text = content;
@@ -303,32 +296,7 @@
     UIAlertView *aView = [[UIAlertView alloc]initWithTitle:title message:content delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [aView show];
 }
-/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

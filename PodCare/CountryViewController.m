@@ -10,34 +10,35 @@
 #import "MasterViewController.h"
 
 @interface CountryViewController ()
-{
-    NSArray *arr1,*arr2;
-}
+
+@property (strong,nonatomic) NSArray *arr1;
+@property (strong,nonatomic) NSArray *arr2;
 @end
 
 @implementation CountryViewController
+@synthesize arr1 = _arr1;
+@synthesize arr2 = _arr2;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (NSArray *)arr1
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        //self.title = @"Select A Country";
+    if (!_arr1) {
+        _arr1 = @[@"AU",@"BR",@"CA",@"CN",@"DE",@"GB",@"FR",@"HK",@"IN",@"IE",@"IT",@"JP",@"MO",@"SG",@"TW",@"US"];
     }
-    return self;
+    return _arr1;
+}
+
+- (NSArray *)arr2
+{
+    if (!_arr2) {
+        _arr2 = @[@"Australia",@"Brazil",@"Canada",@"中国",@"Germany",@"UnitedKingdom",@"France",@"HongKong",@"India",@"Ireland",@"Italia",@"Japan",@"澳門",@"Singapore",@"台灣",@"United States"];
+    }
+    return _arr2;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arr2 = [[NSArray alloc]initWithObjects:@"AU",@"BR",@"CA",@"CN",@"DE",@"GB",@"FR",@"HK",@"IN",@"IE",@"IT",@"JP",@"MO",@"SG",@"TW",@"US",nil];
-    arr1 = [[NSArray alloc]initWithObjects:@"Australia",@"Brazil",@"Canada",@"中国",@"Germany",@"UnitedKingdom",@"France",@"HongKong",@"India",@"Ireland",@"Italia",@"Japan",@"澳門",@"Singapore",@"台灣",@"United States",nil];
 
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
@@ -53,17 +54,17 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return arr1.count;
+    return self.arr1.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        return arr2[row];
+        return self.arr2[row];
     }
     else
     {
-        return arr1[row];
+        return self.arr1[row];
     }
 }
 
@@ -83,7 +84,7 @@
     if ([[segue identifier] isEqualToString:@"beginCheck"]) {
         NSInteger selectedRow=[self.contryPicker selectedRowInComponent:0];
         //当前picker View选择的行号
-        NSString *tmpStr = arr2[selectedRow];
+        NSString *tmpStr = self.arr1[selectedRow];
         NSString *collectionId = [[NSString alloc]initWithFormat:@"%@",[self.podcastInfo objectForKey:@"collectionId"]];
         [[segue destinationViewController] setCountryString:tmpStr];
         [[segue destinationViewController] setCollectionId:collectionId];

@@ -52,9 +52,8 @@
 - (IBAction)startSearch:(id)sender
 {
     [self.searchTextBox resignFirstResponder];
-    NSString *str = self.searchTextBox.text;
-    //NSStringEncoding enc =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    NSString *str2 = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str1 = self.searchTextBox.text;
+    NSString *str2 = [str1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    
     NSString *urlString = [NSString stringWithFormat:@"http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?country=us&entity=podcast&limit=50&term=%@",str2];
     NSLog(@"%@",urlString);
@@ -93,11 +92,7 @@
     podcastArtists.text = [[NSString alloc]initWithFormat:@"Artists: %@",[[self.list objectAtIndex:indexPath.row] objectForKey:@"artistName"]];
     EGOImageView *eGOImageView = [[EGOImageView alloc]initWithPlaceholderImage:[UIImage imageNamed:@"PodCare114.png"]];
     NSURL *url = [NSURL URLWithString:[[self.list objectAtIndex:indexPath.row] objectForKey:@"artworkUrl100"]];
-    //EGOImageView *eGOImageView = (EGOImageView *)searchResultCell.imageView;
-    //eGOImageView.placeholderImage = [UIImage imageNamed:@"PodCare114.png"];
-    //searchResultCell.imageView.image = [UIImage imageNamed:@"PodCare114.png"];
     eGOImageView.frame = CGRectMake(2,2,70,70);
-    
     [searchResultCell addSubview:eGOImageView];
     eGOImageView.imageURL = url;
     
@@ -117,7 +112,6 @@
 #pragma -- ASIHttp Delegate
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"sss");
     if (self.asiRequest) {
         if ([self.asiRequest error]) {
             NSString *result = [[self.asiRequest error] localizedDescription];
@@ -131,12 +125,10 @@
             }else{
                 NSDictionary *mydict = [result JSONValue];
                 NSDictionary *mydict1 = [mydict objectForKey:@"results"];
-                //NSDictionary *mydict2 = [mydict1 objectForKey:@"entry"];
                 NSArray *resultArr = (NSArray *)mydict1;
                 NSMutableDictionary *tmpDict;
                 self.list = [[NSMutableArray alloc]init];
-                for (NSInteger i = 0;i<resultArr.count;i++) {
-                    
+                for (NSInteger i = 0;i<resultArr.count;i++) {                    
                     NSDictionary *item = resultArr[i];
                     NSString *collectionId = [item objectForKey:@"collectionId"];
                     NSString *collectionName = [item objectForKey:@"collectionName"];

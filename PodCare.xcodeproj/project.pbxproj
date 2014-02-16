@@ -17,6 +17,7 @@
 		CD677F8A176B6198006E2F54 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F82176B6198006E2F54 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F8B176B6198006E2F54 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F84176B6198006E2F54 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD677F8C176B6198006E2F54 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD677F87176B6198006E2F54 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD83FC1518B0E82A0082C42D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD83FC1418B0E82A0082C42D /* Images.xcassets */; };
 		CD91171F1764D7360058F13A /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9117071764D7360058F13A /* NSObject+SBJson.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9117201764D7360058F13A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91170A1764D7360058F13A /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9117211764D7360058F13A /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91170C1764D7360058F13A /* SBJsonStreamParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -78,6 +79,7 @@
 		CD677F84176B6198006E2F54 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		CD677F86176B6198006E2F54 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
 		CD677F87176B6198006E2F54 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
+		CD83FC1418B0E82A0082C42D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD9117051764D7360058F13A /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		CD9117061764D7360058F13A /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		CD9117071764D7360058F13A /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				CD9B42D01765842C005849C8 /* CustomCell.m */,
 				CDC7F2A61761EAA4000FDD73 /* DetailViewController.h */,
 				CDC7F2A71761EAA4000FDD73 /* DetailViewController.m */,
+				CD83FC1418B0E82A0082C42D /* Images.xcassets */,
 				CDC7F28F1761EAA4000FDD73 /* Supporting Files */,
 			);
 			path = PodCare;
@@ -430,6 +433,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = iAron;
+				TargetAttributes = {
+					CDC7F2841761EAA3000FDD73 = {
+						DevelopmentTeam = V4926HBP72;
+					};
+				};
 			};
 			buildConfigurationList = CDC7F2801761EAA3000FDD73 /* Build configuration list for PBXProject "PodCare" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -455,6 +463,7 @@
 			files = (
 				CDC7F2931761EAA4000FDD73 /* InfoPlist.strings in Resources */,
 				CDC7F2A21761EAA4000FDD73 /* MainStoryboard.storyboard in Resources */,
+				CD83FC1518B0E82A0082C42D /* Images.xcassets in Resources */,
 				CD0DC51C1770688200E39667 /* star.png in Resources */,
 				CD0DC51E17706B7400E39667 /* star-empty.png in Resources */,
 				CDA8582B17734BB6004FBE67 /* PodCare57.png in Resources */,
@@ -597,11 +606,16 @@
 		CDC7F2AC1761EAA4000FDD73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodCare/PodCare-Prefix.pch";
 				INFOPLIST_FILE = "PodCare/PodCare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -610,13 +624,16 @@
 		CDC7F2AD1761EAA4000FDD73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: WANG ZHONG";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodCare/PodCare-Prefix.pch";
 				INFOPLIST_FILE = "PodCare/PodCare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CCEAE8FF-D203-4E6B-B386-548EA2A6D2AC";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
