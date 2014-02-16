@@ -36,8 +36,6 @@
 		CDA35004176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */; };
 		CDA8582B17734BB6004FBE67 /* PodCare57.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA8582A17734BB6004FBE67 /* PodCare57.png */; };
 		CDA8582C17734BD1004FBE67 /* PodCare114.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F2AE1761EB96000FDD73 /* PodCare114.png */; };
-		CDA8582D17734BDB004FBE67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA85825177318C6004FBE67 /* Default-568h@2x.png */; };
-		CDA8582E17734BDF004FBE67 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA85827177318CC004FBE67 /* Default@2x.png */; };
 		CDC7F2891761EAA4000FDD73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F2881761EAA4000FDD73 /* UIKit.framework */; };
 		CDC7F28B1761EAA4000FDD73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28A1761EAA4000FDD73 /* Foundation.framework */; };
 		CDC7F28D1761EAA4000FDD73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC7F28C1761EAA4000FDD73 /* CoreGraphics.framework */; };
@@ -116,8 +114,6 @@
 		CDA35000176D667600B2DEFF /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		CDA35001176D667600B2DEFF /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		CDA35002176D667600B2DEFF /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
-		CDA85825177318C6004FBE67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CDA85827177318CC004FBE67 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CDA8582A17734BB6004FBE67 /* PodCare57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PodCare57.png; sourceTree = "<group>"; };
 		CDC7F2851761EAA4000FDD73 /* PodCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC7F2881761EAA4000FDD73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -241,6 +237,18 @@
 			path = EGOImageView;
 			sourceTree = "<group>";
 		};
+		CD83FC1318B0B85B0082C42D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CDA8582A17734BB6004FBE67 /* PodCare57.png */,
+				CD0DC51B1770688200E39667 /* star.png */,
+				CD0DC51D17706B7400E39667 /* star-empty.png */,
+				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
+			);
+			name = Images;
+			path = images;
+			sourceTree = "<group>";
+		};
 		CD9117041764D7360058F13A /* SBJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,12 +297,7 @@
 		CDC7F27C1761EAA3000FDD73 = {
 			isa = PBXGroup;
 			children = (
-				CDA8582A17734BB6004FBE67 /* PodCare57.png */,
-				CDA85827177318CC004FBE67 /* Default@2x.png */,
-				CDA85825177318C6004FBE67 /* Default-568h@2x.png */,
-				CD0DC51B1770688200E39667 /* star.png */,
-				CD0DC51D17706B7400E39667 /* star-empty.png */,
-				CDC7F2AE1761EB96000FDD73 /* PodCare114.png */,
+				CD83FC1318B0B85B0082C42D /* Images */,
 				CDA34FFD176D667600B2DEFF /* SVPullToRefresh */,
 				CD677F79176B6198006E2F54 /* EGO */,
 				CD9117041764D7360058F13A /* SBJSON */,
@@ -456,8 +459,6 @@
 				CD0DC51E17706B7400E39667 /* star-empty.png in Resources */,
 				CDA8582B17734BB6004FBE67 /* PodCare57.png in Resources */,
 				CDA8582C17734BD1004FBE67 /* PodCare114.png in Resources */,
-				CDA8582D17734BDB004FBE67 /* Default-568h@2x.png in Resources */,
-				CDA8582E17734BDF004FBE67 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
