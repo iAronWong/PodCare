@@ -10,32 +10,34 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 #import "EGOImageView.h"
-//#import "EGOCache.h"
-//#import "EGOImageLoader.h"
-#import "FirstViewController.h"
+#import "CountryViewController.h"
+
 @interface SearchPodcastViewController ()
-{
-    
-}
 @end
 
 @implementation SearchPodcastViewController
 @synthesize asiRequest = _asiRequest;
 @synthesize list = _list;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (ASIHTTPRequest *)asiRequest
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (!_asiRequest) {
+        _asiRequest = [[ASIHTTPRequest alloc]init];
     }
-    return self;
+    return _asiRequest;
+}
+
+- (NSArray *)list
+{
+    if (!_list) {
+        _list = [[NSMutableArray alloc]init];
+    }
+    return _list;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//self.asiRequest.delegate = self;
-    self.list = [[NSMutableArray alloc]init];
     self.searchTextBox.delegate = self;
     
 }
@@ -45,12 +47,6 @@
     [self.searchTextBox resignFirstResponder];
     [self startSearch:nil];
     return YES;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)startSearch:(id)sender

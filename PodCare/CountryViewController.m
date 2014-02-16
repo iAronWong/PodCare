@@ -6,16 +6,16 @@
 //  Copyright (c) 2013年 iAron. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "CountryViewController.h"
 #import "MasterViewController.h"
 
-@interface FirstViewController ()
+@interface CountryViewController ()
 {
     NSArray *arr1,*arr2;
 }
 @end
 
-@implementation FirstViewController
+@implementation CountryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

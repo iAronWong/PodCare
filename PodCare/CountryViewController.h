@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+@interface CountryViewController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *contryPicker;
 @property (strong, nonatomic) NSDictionary *podcastInfo;
 
